@@ -63,7 +63,7 @@ module Fastlane
         require 'tmpdir'
         Dir.mktmpdir('fastlane') do |dir|
           err = "#{dir}/grep.err"
-          profile_uuid = `grep -aA1 UUID #{profile_path} | grep -io "[a-z0-9]\\{8\\}-[a-z0-9]\\{4\\}-[a-z0-9]\\{4\\}-[a-z0-9]\\{4\\}-[a-z0-9]\\{12\\}" 2> #{err}`
+          profile_uuid = `grep -aA1 UUID "#{profile_path}" | grep -io "[a-z0-9]\\{8\\}-[a-z0-9]\\{4\\}-[a-z0-9]\\{4\\}-[a-z0-9]\\{4\\}-[a-z0-9]\\{12\\}" 2> #{err}`
 
           raise RuntimeError, "UUID parsing failed #{profile_path}. Exit: #{$?.exitstatus}: #{File.read(err)}" if $?.exitstatus != 0
 
